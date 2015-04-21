@@ -19,7 +19,7 @@
 
   module.controller('MasterController', function($scope, $data, $http) {
     $scope.items = todosTicket;  
-    $http.get('http://empowerlabs.com/proyectos/trackersAPI/EmpowerLabsIntra/tickettracker/todos.php').
+    $http.get('http://empowerlabs.com/proyectos/soporte/todos.php').
   success(function(data, status, headers, config) {
   	data.reverse();
     $data.items=data;

@@ -52,17 +52,17 @@
 				</div>
 
 				</ons-list-item>
-					<ons-list-item class="menu-item" ng-click="menu.setMainPage('page1.html', {closeMenu: true})">
-						<ons-icon icon="fa-plus"></ons-icon>
-						New Post
-					</ons-list-item>
-
 					<ons-list-item class="menu-item" ng-click="menu.setMainPage('page2.html', {closeMenu: true})">
-						<ons-icon icon="fa-bookmark"></ons-icon>
-						Bookmark
+						<ons-icon icon="fa-plus"></ons-icon>
+						Nuevo 
 					</ons-list-item>
 
 					<ons-list-item class="menu-item" ng-click="menu.setMainPage('page1.html', {closeMenu: true})">
+						<ons-icon icon="fa-bookmark"></ons-icon>
+						Todos
+					</ons-list-item>
+
+					<!--<ons-list-item class="menu-item" ng-click="menu.setMainPage('page1.html', {closeMenu: true})">
 						<ons-icon icon="fa-twitter"></ons-icon>
 						Official Twitter
 					</ons-list-item>
@@ -71,20 +71,20 @@
 				<br>
 
 				<ons-list class="bottom-menu-list">
-					<ons-list-item class="bottom-menu-item" ng-click="menu.setMainPage('page2.html', {closeMenu: true})">
-						Settings
+					<ons-list-item class="bottom-menu-item" ng-click="menu.setMainPage('page1.html', {closeMenu: true})">
+						Noticias
 						<div class="notification menu-notification">
 							3
 						</div>
 					</ons-list-item>
 
 					<ons-list-item class="bottom-menu-item" ng-click="menu.setMainPage('page1.html', {closeMenu: true})">
-						Help
+						Ayuda
 					</ons-list-item>
 
-					<ons-list-item class="bottom-menu-item" ng-click="menu.setMainPage('page2.html', {closeMenu: true})">
-						Send feedback
-					</ons-list-item>
+					<ons-list-item class="bottom-menu-item" ng-click="menu.setMainPage('page1.html', {closeMenu: true})">
+						Sugerencias
+					</ons-list-item>-->
 				</ons-list>
 			</ons-page>
 		</ons-template>
@@ -98,7 +98,7 @@
 							<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
 						</ons-toolbar-button>
 					</div>
-        <div class="center">EmpowerLabsIntra</div>
+        <div class="center">Soprte App</div>
       </ons-toolbar>
 
       <ons-list ng-controller="MasterController">
@@ -109,10 +109,10 @@
             </ons-col>
             <ons-col>
               <header>
-                <span class="item-title">{{item.nombre}}</span>
+                <span class="item-title">{{item.categoria}}</span>
                 <span class="item-label">{{item.fecha}}</span>
               </header>
-              <p class="item-desc"><strong>Problema: </strong>{{item.problema}}</p>
+              <p class="item-desc"><strong>Problema: </strong>{{item.asunto}}</p>
               <p class="item-desc"><strong>Autor: </strong>{{item.autor}}</p>
             </ons-col>
           </ons-row>                          
@@ -125,8 +125,8 @@
     <ons-page ng-controller="DetailController">
 
       <ons-toolbar>
-        <div class="left"><ons-back-button>Back</ons-back-button></div>
-        <div class="center">Details</div>
+        <div class="left"><ons-back-button>Atras</ons-back-button></div>
+        <div class="center"></div>
       </ons-toolbar>
 
       <ons-list modifier="inset" style="margin-top: 10px">
@@ -137,26 +137,44 @@
             </ons-col>
             <ons-col>
               <header>
-                <span class="item-title">{{item.nombre}}</span>
+                <span class="item-title">{{item.asunto}}</span>
                 <span class="item-label">{{item.fecha}}</span>
               </header>
-              <p class="item-desc">{{item.problema}}</p>
+              <p class="item-desc">{{item.area}}</p>
             </ons-col>
           </ons-row>
         </ons-list-item>
 
         <ons-list-item modifier="chevron" ng-click="doSomething()">
           <ons-icon icon="ion-chatboxes" fixed-width="true" style="color: #ccc"></ons-icon>
-          <strong>Por: </strong>{{item.autor2}}
+          <strong>Por: </strong>{{item.autor}}
         </ons-list-item>
       </ons-list>
 
       <ons-list style="margin-top: 10px">
-        <ons-list-item class="item" ng-repeat="i in [1,2,3]">
+        <ons-list-item class="item">
           <header>
-            <span class="item-title">Lorem ipsum dolor sit amet</span>
+            <span class="item-title"></span>
           </header>
-          <p class="item-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <p class="item-desc">{{item.descripcion}}</p>
+        </ons-list-item>
+      </ons-list>
+
+      <ons-list style="margin-top: 10px">
+        <ons-list-item class="item">
+          <header>
+            <span class="item-title">{{item.area}}</span>
+          </header>
+          <p class="item-desc"><strong>Categoria: </strong>{{item.categoria}}</p>
+        </ons-list-item>
+      </ons-list>
+
+      <ons-list style="margin-top: 10px">
+        <ons-list-item class="item">
+          <header>
+            <span class="item-title"></span>
+          </header>
+          <p class="item-desc"><strong>Activo?  </strong>{{item.activo}}</p>
         </ons-list-item>
       </ons-list>
 
@@ -164,6 +182,19 @@
 
     </ons-page>
   </ons-template>
+	<ons-template id='page2.html'>
+	<ons-page>
+	
+      <ons-toolbar>
+      <div class="left">
+						<ons-toolbar-button ng-click="menu.toggle()">
+							<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+						</ons-toolbar-button>
+					</div>
+        <div class="center">Nuevo</div>
+      </ons-toolbar>
 
+	</ons-page>
+	</ons-template>
 </body>  
 </html>
