@@ -52,11 +52,6 @@
 				</div>
 
 				</ons-list-item>
-					<ons-list-item class="menu-item" ng-click="menu.setMainPage('page2.html', {closeMenu: true})">
-						<ons-icon icon="fa-plus"></ons-icon>
-						Nuevo 
-					</ons-list-item>
-
 					<ons-list-item class="menu-item" ng-click="menu.setMainPage('page1.html', {closeMenu: true})">
 						<ons-icon icon="fa-bookmark"></ons-icon>
 						Todos
@@ -91,17 +86,22 @@
 		
   <ons-template id="page1.html">
   <ons-navigator>
-    <ons-page>
+    <ons-page ng-controller="MasterController">
       <ons-toolbar>
       <div class="left">
 						<ons-toolbar-button ng-click="menu.toggle()">
 							<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
 						</ons-toolbar-button>
 					</div>
-        <div class="center">Soprte App</div>
+        <div class="center">Soporte App</div>
+        <div class="right">
+						<ons-toolbar-button ng-click="nuevo()">
+							<ons-icon icon="fa-plus"></ons-icon>
+						</ons-toolbar-button>
+					</div>
       </ons-toolbar>
 
-      <ons-list ng-controller="MasterController">
+      <ons-list>
         <ons-list-item modifier="chevron" class="item" ng-repeat="item in items" ng-click="showDetail(item)">
           <ons-row>
             <ons-col width="60px"> 
@@ -182,17 +182,14 @@
 
     </ons-page>
   </ons-template>
-	<ons-template id='page2.html'>
+	<ons-template id='nuevo.html'>
 	<ons-page>
 	
-      <ons-toolbar>
-      <div class="left">
-						<ons-toolbar-button ng-click="menu.toggle()">
-							<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
-						</ons-toolbar-button>
-					</div>
+      <ons-toolbar> 
+      <div class="left"><ons-back-button>Atras</ons-back-button></div>
         <div class="center">Nuevo</div>
       </ons-toolbar>
+      
 
 	</ons-page>
 	</ons-template>

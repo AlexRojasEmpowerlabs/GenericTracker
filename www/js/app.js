@@ -34,6 +34,10 @@
   error(function(data, status, headers, config) {
   	
   });
+  
+    $scope.nuevo=function(){
+    	$scope.ons.navigator.pushPage('nuevo.html');
+    };
   });
 
   module.factory('$data', function() {
