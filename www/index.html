@@ -85,7 +85,7 @@
 		</ons-template>
 
 		<ons-template id="page1.html">
-			<ons-navigator>
+			<ons-navigator animation="lift">
 				<ons-page ng-controller="MasterController">
 					<ons-toolbar>
 						<div class="left">
@@ -159,7 +159,7 @@
 						</ons-row>
 					</ons-list-item>
 
-					<ons-list-item modifier="chevron" ng-click="ons.navigator.pushPage('perfil.html')">
+					<ons-list-item modifier="chevron" ng-click="ons.navigator.pushPage('perfil.html',{animation:'fade'})">
 						<ons-icon icon="ion-chatboxes" fixed-width="true" style="color: #ccc"></ons-icon>
 						<strong>Por: </strong>{{item.autor}}
 					</ons-list-item>
@@ -402,6 +402,34 @@
 
 				</ons-list>
 				<br>
+			</ons-page>
+		</ons-template>
+		
+		<ons-template id="login2.html">
+			<ons-page style="background-color: #EFEFEF">
+				<ons-toolbar style="background-color: #EFEFEF">
+					<div class="center">
+						<img src="img/Logowiki.png" />
+					</div>
+				</ons-toolbar>
+
+				<div class="login-form">
+					<div class="center">
+						<form id="logueo">
+							<input id="user" type="email" class="text-input--underbar" placeholder="Usuario" value="" name="user" style="background:#FFFFFF; text-align: center; border-radius: 5px;" />
+							<br>
+							<input type="password" class="text-input--underbar" placeholder="Contraseña" value="" name="pass" style="background:#FFFFFF; text-align: center; border-radius: 5px;" />
+							<br>
+							<br>
+							<ons-button modifier="large" class="login-button" onclick="send();">
+								Log In
+							</ons-button>
+							<br>
+						</form>
+					</div>
+
+				</div>
+
 			</ons-page>
 		</ons-template>
 		<ons-modal var="modal">

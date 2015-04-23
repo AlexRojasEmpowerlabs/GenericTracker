@@ -75,7 +75,7 @@ var Profile="[]";
     $scope.showDetail = function(item) {
       var selectedItem = item;
       $data.selectedItem = selectedItem;
-      $scope.ons.navigator.pushPage('detail.html', {title : selectedItem.title});
+      $scope.ons.navigator.pushPage('detail.html',{animation : 'slide'} );
     };
   }).
   error(function(data, status, headers, config) {
