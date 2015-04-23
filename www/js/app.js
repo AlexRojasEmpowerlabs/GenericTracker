@@ -1,5 +1,7 @@
 (function(){
   'use strict';
+  var selectedUser="VictorHeredia"
+var Profile="[]";
   var todosTicket={};
   var module = angular.module('app', ['onsen'],function($httpProvider) {
   // Use x-www-form-urlencoded Content-Type
@@ -57,6 +59,7 @@
 
   module.controller('DetailController', function($scope, $data) {
     $scope.item = $data.selectedItem;
+    selectedUser= $data.selectedItem.autor;
     //navigator.notification.vibrate(2000); //milliseconds
 	//navigator.notification.beep(2); // numbr of times
   });
@@ -91,6 +94,26 @@
       
       return data;
   });
+  
+  module.controller('profileController', function($scope, $dataProfile, $http) {
+    $http.get('http://empowerlabs.com/proyectos/helpDesk/getUserData.php?user='+selectedUser).
+  success(function(data, status, headers, config) {
+  	//$scope.ons.notification.alert({message: ""+data.firstname,title: "intellibanks"});
+    $dataProfile=data;
+    Profile=data;
+    $scope.data = $dataProfile;
+  }).
+  error(function(data, status, headers, config) {
+  	
+  });
+  });
+   module.factory('$dataProfile', function() {
+      var dataProfile;
+      		dataProfile=Profile;
+      
+      return dataProfile;
+  });
+  
   module.controller('NuevoController',function($scope,$http){
   	$scope.formData = {};
   	$scope.push=function(){

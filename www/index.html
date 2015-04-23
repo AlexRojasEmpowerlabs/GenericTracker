@@ -36,7 +36,7 @@
 
 				<ons-list class="menu-list">
 					<ons-list-item>
-						<div class="profile-card">
+						<div class="profile-card2">
 
 							<img src="http://www.empowerlabs.com/intellibanks/pub/Main/JoseRojas/me2.jpg" class="profile-image">
 							<div class="profile-name">
@@ -159,7 +159,7 @@
 						</ons-row>
 					</ons-list-item>
 
-					<ons-list-item modifier="chevron" ng-click="doSomething()">
+					<ons-list-item modifier="chevron" ng-click="ons.navigator.pushPage('perfil.html')">
 						<ons-icon icon="ion-chatboxes" fixed-width="true" style="color: #ccc"></ons-icon>
 						<strong>Por: </strong>{{item.autor}}
 					</ons-list-item>
@@ -228,13 +228,16 @@
 									<ons-list-item>
 										<input type="text" name="asunto" ng-model="formData.asunto" class="text-input text-input--transparent" placeholder="Asunto" style="width: 100%">
 									</ons-list-item>
-
 									<ons-list-item>
-										<input name="area" ng-model="formData.area" type="text" class="text-input text-input--transparent" placeholder="Area" style="width: 100%">
-									</ons-list-item>
-
-									<ons-list-item>
-										<input name="prioridad" ng-model="formData.prioridad" type="text" class="text-input text-input--transparent" placeholder="Prioridad" style="width: 100%">
+										<label class="form-item">
+										<span class="input-label">Prioridad</span>
+										<select ng-model="formData.prioridad">
+											<option>1-Muy Alta</option>
+											<option selected>2-Alta</option>
+											<option>3-Media</option>
+											<option>4- Baja</option>
+										</select>
+										</label>
 									</ons-list-item>
 									<ons-list-item>
 									<label class="form-item">
@@ -242,6 +245,23 @@
 										<select ng-model="formData.activo">
 											<option>Si</option>
 											<option selected>No</option>
+										</select>
+										</label>
+									</ons-list-item>
+									<ons-list-item>
+										<label class="form-item">
+										<span class="input-label">Area</span>
+										<select ng-model="formData.area">
+											<option>Todas las áreas</option>
+											<option selected>Comunicación</option>
+											<option>Capacitación</option>
+											<option>Marketing</option>
+											<option>Soporte técnico</option>
+											<option>Administración</option>
+											<option>Tecnología</option>
+											<option>Operación</option>
+											<option>Ventas</option>
+											<option>Servicio al cliente</option>
 										</select>
 										</label>
 									</ons-list-item>
@@ -263,7 +283,7 @@
 									<ons-list-item>
 
 										<label  class="form-item"> <span class="input-label">Fecha</span>
-											<input type="date" ng-model="formData.fecha" >
+											<input type="text" name="fecha" ng-model="formData.fecha" >
 										</label>
 									</ons-list-item>
 
@@ -283,6 +303,105 @@
 
 				</div>
 
+			</ons-page>
+		</ons-template>
+		
+		<ons-template id="perfil.html">
+			<ons-page ng-controller="profileController">
+				<ons-toolbar>
+					<div class="left">
+						<ons-back-button>
+							Atras
+						</ons-back-button>
+					</div>
+					<div class="center">
+						Perfil
+					</div>
+					<div class="right">
+						<ons-toolbar-button>
+							<ons-icon icon="ion-gear-a custom-icon" style="vertical-align: -4px; font-size: 28px;"></ons-icon>
+						</ons-toolbar-button>
+					</div>
+				</ons-toolbar>
+
+				<div class="profile-card">
+
+					<img src="{{data.image}}" class="profile-image">
+					<div class="profile-name">
+						{{data.firstname}} {{data.lastname}}
+					</div>
+					<div class="profile-id">
+						{{data.user}}
+					</div>
+					<div class="profile-desc">
+						{{data.titles}}
+					</div>
+
+				</div>
+
+				<ons-list>
+					<!--<ons-list-item>
+					<ons-row>
+					<ons-col class="info-col">
+					<div class="info-num">
+					87
+					</div>
+					<div class="info-unit">
+					Comentarios
+					</div>
+					</ons-col>
+					<ons-col class="info-col">
+					<div class="info-num">
+					40
+					</div>
+					<div class="info-unit">
+					Siguiendo
+					</div>
+					</ons-col>
+					<ons-col class="info-col">
+					<div class="info-num">
+					38
+					</div>
+					<div class="info-unit">
+					Seguidores
+					</div>
+					</ons-col>
+					</ons-row>
+					</ons-list-item>-->
+				</ons-list>
+
+				<ons-list modifier="inset" style="margin-top: 10px">
+					<ons-list-item modifier="chevron">
+						<strong>Skype: </strong>{{data.skypeid}}
+					</ons-list-item>
+					<ons-list-item modifier="chevron">
+						<strong>País: </strong>{{data.country}}
+					</ons-list-item>
+					<ons-list-item modifier="chevron">
+						<strong>Organización: </strong>{{data.organization}}
+					</ons-list-item>
+					<ons-list-item modifier="chevron">
+						<strong>Correo: </strong>{{data.email}}
+					</ons-list-item>
+
+					<ons-list-item modifier="chevron">
+						<strong>Teléfono: </strong>{{data.telephone}}
+					</ons-list-item>
+
+					<ons-list-item modifier="chevron">
+						<strong>Móvil: </strong>{{data.mobile}}
+					</ons-list-item>
+
+					<ons-list-item modifier="chevron">
+						<strong>URL: </strong>{{data.url}}
+					</ons-list-item>
+
+					<ons-list-item modifier="chevron">
+						<strong>Status: </strong>{{data.statusupdate}}
+					</ons-list-item>
+
+				</ons-list>
+				<br>
 			</ons-page>
 		</ons-template>
 		<ons-modal var="modal">
