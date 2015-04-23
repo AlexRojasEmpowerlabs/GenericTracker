@@ -164,3 +164,9 @@
     	.navigation-bar{
     		background-color: #525252;
     	}
+.form-item{
+	color: #CCCCCC;
+}
+.form-item input, select {
+		float:right;
+}
