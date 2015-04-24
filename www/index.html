@@ -38,15 +38,15 @@
 					<ons-list-item>
 						<div class="profile-card2">
 
-							<img src="http://www.empowerlabs.com/intellibanks/pub/Main/JoseRojas/me2.jpg" class="profile-image">
+							<img src="{{mydata.image}}" class="profile-image">
 							<div class="profile-name">
-								Alex Rojas
+								{{mydata.firstname}} {{mydata.lastname}}
 							</div>
 							<div class="profile-id">
-								@JoseRojas
+								{{mydata.user}}
 							</div>
 							<div class="profile-desc">
-								Developer
+								{{mydata.title}}
 							</div>
 
 						</div>
@@ -339,37 +339,6 @@
 
 				</div>
 
-				<ons-list>
-					<!--<ons-list-item>
-					<ons-row>
-					<ons-col class="info-col">
-					<div class="info-num">
-					87
-					</div>
-					<div class="info-unit">
-					Comentarios
-					</div>
-					</ons-col>
-					<ons-col class="info-col">
-					<div class="info-num">
-					40
-					</div>
-					<div class="info-unit">
-					Siguiendo
-					</div>
-					</ons-col>
-					<ons-col class="info-col">
-					<div class="info-num">
-					38
-					</div>
-					<div class="info-unit">
-					Seguidores
-					</div>
-					</ons-col>
-					</ons-row>
-					</ons-list-item>-->
-				</ons-list>
-
 				<ons-list modifier="inset" style="margin-top: 10px">
 					<ons-list-item modifier="chevron">
 						<strong>Skype: </strong>{{data.skypeid}}
@@ -406,22 +375,21 @@
 		</ons-template>
 		
 		<ons-template id="login2.html">
-			<ons-page style="background-color: #EFEFEF">
+			<ons-page style="background-color: #EFEFEF" ng-controller="LoginController">
 				<ons-toolbar style="background-color: #EFEFEF">
 					<div class="center">
-						<img src="img/Logowiki.png" />
 					</div>
 				</ons-toolbar>
 
 				<div class="login-form">
 					<div class="center">
-						<form id="logueo">
-							<input id="user" type="email" class="text-input--underbar" placeholder="Usuario" value="" name="user" style="background:#FFFFFF; text-align: center; border-radius: 5px;" />
+						<form id="logueo2">
+							<input ng-model="formLogin.nombre" type="text" class="text-input--underbar" placeholder="Usuario" style="background:#FFFFFF; text-align: center; border-radius: 5px;" />
 							<br>
-							<input type="password" class="text-input--underbar" placeholder="Contraseña" value="" name="pass" style="background:#FFFFFF; text-align: center; border-radius: 5px;" />
+							<input ng-model="formLogin.pass" type="password" class="text-input--underbar" placeholder="Contraseña" style="background:#FFFFFF; text-align: center; border-radius: 5px;" />
 							<br>
 							<br>
-							<ons-button modifier="large" class="login-button" onclick="send();">
+							<ons-button modifier="large" class="login-button" ng-click="login()">
 								Log In
 							</ons-button>
 							<br>

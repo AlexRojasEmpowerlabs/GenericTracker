@@ -1,8 +1,11 @@
 (function(){
   'use strict';
-  var selectedUser="VictorHeredia"
+  var user="nouser";
+  var selectedUser="VictorHeredia";
 var Profile="[]";
+var myProfile="[]";
   var todosTicket={};
+  var Login={};
   var module = angular.module('app', ['onsen'],function($httpProvider) {
   // Use x-www-form-urlencoded Content-Type
   $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
@@ -49,11 +52,24 @@ var Profile="[]";
   }];
 });
 
-  module.controller('AppController', function($scope, $data) {
+  module.controller('AppController', function($scope, $data,$myDataProfile,$http) {
     $scope.doSomething = function() {
       setTimeout(function() {
         alert(''+device.uuid);
       }, 100);
+    };
+    $scope.miPerfil=function(){
+    	$http.get('http://empowerlabs.com/proyectos/helpDesk/getUserData.php?user='+user).
+  success(function(data, status, headers, config) {
+  	//$scope.ons.notification.alert({message: ""+data.firstname,title: "intellibanks"});
+    $myDataProfile=data;
+    myProfile=data;
+    $scope.mydata = $myDataProfile;
+    //ons.notification.alert({message: ''+user, title:"Intellibanks"});
+  }).
+  error(function(data, status, headers, config) {
+  	
+  });
     };
   });
 
@@ -66,6 +82,9 @@ var Profile="[]";
 
   module.controller('MasterController', function($scope, $data, $http) {
     $scope.items = todosTicket;  
+  	if(user=="nouser"){
+  		 menu.setMainPage('login2.html');
+  	}
     $http.get('http://empowerlabs.com/proyectos/soporte/todos.php').
   success(function(data, status, headers, config) {
   	data.reverse();
@@ -131,4 +150,30 @@ ons.notification.alert({message: ''+data.mensaje, title:"Intellibanks"});
   });
   	};
   });
+  
+  module.controller('LoginController',function($scope,$http){
+  	$scope.formLogin={};
+  		$scope.login=function(){
+  			$http.post('http://empowerlabs.com/landing-pages/Martin/Usuarios/ingreso.php',$scope.formLogin).
+  			success(function(data,status,headers,config){
+  				if(data.code=="OK"){
+  					user=data.user;
+  					//ons.notification.alert({message: ''+data.respuesta, title:"Intellibanks"});
+  					$scope.miPerfil();
+  					menu.setMainPage('page1.html');
+  				}
+  				else{
+  					ons.notification.alert({message: ''+data.respuesta, title:"Intellibanks"});
+  				}
+  			});
+  		};
+  		
+  });
+   module.factory('$myDataProfile', function() {
+      var myDataProfile;
+      		myDataProfile=myProfile;
+      
+      return myDataProfile;
+  });
+  
 })();
